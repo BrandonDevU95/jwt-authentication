@@ -1,0 +1,2 @@
+### Registrar Usuario
+POST http://localhost:3000/auth/signup
