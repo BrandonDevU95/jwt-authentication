@@ -1,2 +1,11 @@
 ### Registrar Usuario
 POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstname": "Juan",
+    "lastname": "Perez",
+    "email": "jperez@gmail.com",
+    "password": "123456"
+
+}

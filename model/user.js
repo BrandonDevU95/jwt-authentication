@@ -16,8 +16,7 @@ const userSchema = z.object({
 		})
 		.email({
 			message: 'Invalid email address',
-		})
-		.unique(),
+		}),
 	password: z
 		.string({
 			required_error: 'Password is required',
@@ -26,11 +25,11 @@ const userSchema = z.object({
 		.min(6, {
 			message: 'Password must be at least 6 characters long',
 		}),
-	role: z.string(),
-	active: z.boolean(),
-	avatar: z.string().url(),
-	created_at: z.date(),
-	updated_at: z.date(),
+	role: z.string().optional(),
+	active: z.boolean().optional(),
+	avatar: z.string().url().optional(),
+	created_at: z.date().default(() => new Date()),
+	updated_at: z.date().default(() => new Date()),
 });
 
 //safeParse devuelve un objeto con un error si no se cumple el schema, y
