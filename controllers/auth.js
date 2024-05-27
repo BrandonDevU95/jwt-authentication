@@ -1,6 +1,7 @@
-const { use } = require('../app');
 const { validateUser } = require('../model/user');
 const { encryptPassword } = require('../utils/authPass');
+const crypto = require('node:crypto');
+const db = require('../firebase');
 
 async function signUp(req, res) {
 	const user = validateUser(req.body);
@@ -16,8 +17,15 @@ async function signUp(req, res) {
 	}
 
 	user.data.password = hashedPassword;
+	user.data.id = crypto.randomUUID();
 
-	console.log(user.data);
+	const response = await db.collection('users').add(user.data);
+
+	if (response.error) {
+		return res.status(500).json({ error: response.message });
+	}
+
+	return res.status(201).json({ message: 'User created successfully' });
 }
 
 module.exports = { signUp };
