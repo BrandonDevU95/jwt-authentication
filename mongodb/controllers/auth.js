@@ -128,42 +128,7 @@ async function login(req, res) {
 	}
 }
 
-async function refreshToken(req, res) {
-	const token = req.cookies['access_token'];
-
-	if (!token) {
-		return res.status(400).json({ error: 'Token is required' });
-	}
-
-	const decoded = jwt.decodedToken(token);
-
-	if (!decoded) return res.status(403).json({ error: 'Forbidden' });
-
-	try {
-		const user = await User.findOne({ _id: decoded.user_id });
-		if (!user) {
-			return res.status(400).json({ error: 'User not found' });
-		}
-
-		const newToken = jwt.generateToken(user);
-
-		// Configurar cookies
-		res.cookie('access_token', newToken, {
-			httpOnly: true,
-			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
-			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
-			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
-		});
-
-		return res.status(200).json({ accessToken: newToken });
-	} catch (error) {
-		console.log(error);
-		return res.status(500).json({ error: 'Internal Server Error' });
-	}
-}
-
 module.exports = {
 	signup,
 	login,
-	refreshToken,
 };
