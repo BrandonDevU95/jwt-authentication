@@ -128,10 +128,12 @@ async function refreshToken(req, res) {
 		return res.status(400).json({ error: 'Token is required' });
 	}
 
-	const { user_id } = jwt.verifyToken(token);
+	const decoded = jwt.verifyToken(token);
+
+	if (!decoded) return res.status(403).json({ error: 'Forbidden' });
 
 	try {
-		const user = await User.findOne({ _id: user_id });
+		const user = await User.findOne({ _id: decoded.user_id });
 		if (!user) {
 			return res.status(400).json({ error: 'User not found' });
 		}
@@ -139,7 +141,7 @@ async function refreshToken(req, res) {
 		const newToken = jwt.generateToken(user);
 
 		// Configurar cookies
-		res.cookie('access_token', accessToken, {
+		res.cookie('access_token', newToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
 			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
@@ -148,6 +150,7 @@ async function refreshToken(req, res) {
 
 		return res.status(200).json({ accessToken: newToken });
 	} catch (error) {
+		console.log(error);
 		return res.status(500).json({ error: 'Internal Server Error' });
 	}
 }
