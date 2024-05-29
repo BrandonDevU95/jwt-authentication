@@ -4,24 +4,31 @@ const { validateUser } = require('../schemas/user');
 const jwt = require('../utils/jwt');
 
 async function signup(req, res) {
-	const user = validateUser(req.body);
+	const userFields = validateUser(req.body);
 
-	if (!user.success) {
-		return res.status(400).json({ error: JSON.parse(user.error.message) });
+	if (!userFields.success) {
+		return res
+			.status(400)
+			.json({ error: JSON.parse(userFields.error.message) });
 	}
 
-	const hashedPassword = await encryptPassword(user.data.password);
+	const hashedPassword = await encryptPassword(userFields.data.password);
 
 	if (hashedPassword.error) {
 		return res.status(500).json({ error: hashedPassword.message });
 	}
 
-	user.data.email = user.data.email.toLowerCase();
-	user.data.password = hashedPassword;
+	const tempUser = {
+		...userFields.data,
+		email: userFields.data.email.toLowerCase(),
+		password: hashedPassword,
+		role: 'user',
+		active: true,
+	};
 
-	const newUser = new User(user.data);
+	const userSchema = new User(tempUser);
 	try {
-		const user = await newUser.save();
+		const user = await userSchema.save();
 		const accessToken = jwt.generateToken(user);
 		const refreshToken = jwt.generateRefreshToken(user);
 
@@ -83,7 +90,7 @@ async function login(req, res) {
 		const user = await User.findOne(loginField);
 
 		if (!user) {
-			return res.status(400).json({ error: 'User not found' });
+			return res.status(400).json({ error: 'Invalid credentials' });
 		}
 
 		if (!user.active)

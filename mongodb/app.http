@@ -3,10 +3,10 @@ POST http://localhost:3000/api/signup
 Content-Type: application/json
 
 {
-    "firstname": "Juan",
-    "lastname": "Lopez",
-    "username": "jlopez89",
-    "email": "jlopez89@gmail.com",
+    "firstname": "Brandon",
+    "lastname": "Vargas",
+    "username": "bvargas",
+    "email": "bvargas95@gmail.com",
     "password": "123456"
 }
 
@@ -15,17 +15,17 @@ POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
-    "username": "jlopez89",
+    "username": "bvargas95@gmail.com",
     "password": "123456"
 }
 
 ### Refresh Token
 POST http://localhost:3000/api/refresh-token
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTcyYjYxNjViZmRmYjg2OTZiM2MxMCIsImlhdCI6MTcxNzAxNTMwNTUxOCwiZXhwIjoxNzE3MDE1NjA1NTE3fQ.TUB7UqTGdt3Qy8J8Z-SJkTVVjy7jFEarHxsizgnC9BQ
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAxNzM3MTg3MCwiZXhwIjoxNzE3MDE3NjcxODcwfQ.sSOqsl_OP0-EnhHFETmoJI5COQmTgxTq-baOEyLWyyY
 
 ### Protected Route with cookie configuration
 GET http://localhost:3000/api/protected
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTcyYjYxNjViZmRmYjg2OTZiM2MxMCIsImlhdCI6MTcxNzAxMzY3Nzc1NywiZXhwIjoxNzE3MDEzOTc3NzU2fQ.4KtbGNYuBmQN_W_xJTLxo-uhZHcuN1gQIOh5h_6UYY4; Max-Age=300; Path=/; Expires=Wed, 29 May 2024 20:19:37 GMT; HttpOnly; SameSite=Strict,refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsInVzZXJfaWQiOiI2NjU3MmI2MTY1YmZkZmI4Njk2YjNjMTAiLCJpYXQiOjE3MTcwMTM2Nzc3NTksImV4cCI6MTcxNzYxODQ3Nzc1OX0.QK8hq1h6zYeNObDwwjxfl5esTTG0_PPkYwHPg99DnfE; Max-Age=604800; Path=/; Expires=Wed, 05 Jun 2024 20:14:37 GMT; HttpOnly; SameSite=Strict
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAxNzM4NTA5OCwiZXhwIjoxNzE3MDE3Njg1MDk4fQ.UAfNjBvtKuCsEXKkfgpBhIK_5bdw9xtKveOl0h9Caag; Max-Age=300; Path=/; Expires=Wed, 29 May 2024 21:21:25 GMT; HttpOnly; SameSite=Strict
 
 
 
