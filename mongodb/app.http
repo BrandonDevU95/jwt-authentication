@@ -18,3 +18,11 @@ Content-Type: application/json
     "username": "jlopez89",
     "password": "123456"
 }
+
+### Refresh Token
+POST http://localhost:3000/api/refresh-token
+Content-Type: application/json
+
+{
+    "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTcyYjYxNjViZmRmYjg2OTZiM2MxMCIsImlhdCI6MTcxNzAwNzUwNjE3OSwiZXhwIjoxNzE3MDExMTA2MTc4fQ.QmRT5UXKvB4NqdmlnsCWw60nEwcyiKCnEvtOSLDCE_Q"
+}  

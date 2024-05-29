@@ -83,7 +83,31 @@ async function login(req, res) {
 	}
 }
 
+async function refreshToken(req, res) {
+	const { token } = req.body;
+
+	if (!token) {
+		return res.status(400).json({ error: 'Token is required' });
+	}
+
+	const { user_id } = jwt.verifyToken(token);
+
+	try {
+		const user = await User.findOne({ _id: user_id });
+		if (!user) {
+			return res.status(400).json({ error: 'User not found' });
+		}
+
+		const newToken = jwt.generateToken(user);
+
+		return res.status(200).json({ token: newToken });
+	} catch (error) {
+		return res.status(500).json({ error: 'Internal Server Error' });
+	}
+}
+
 module.exports = {
 	signup,
 	login,
+	refreshToken,
 };
