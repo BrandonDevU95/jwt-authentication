@@ -8,7 +8,7 @@ function generateToken(user) {
 	const payload = {
 		token_type: 'access',
 		user_id: user._id,
-		iat: new Date.now(),
+		iat: Date.now(),
 		exp: expToken.getTime(),
 	};
 
@@ -23,7 +23,7 @@ function generateRefreshToken(user) {
 	const payload = {
 		token_type: 'refresh',
 		user_id: user._id,
-		iat: new Date.now(),
+		iat: Date.now(),
 		exp: expToken.getTime(),
 	};
 
