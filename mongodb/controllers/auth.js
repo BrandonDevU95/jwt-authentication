@@ -122,7 +122,7 @@ async function login(req, res) {
 }
 
 async function refreshToken(req, res) {
-	const { token } = req.body;
+	const token = req.cookies['access_token'];
 
 	if (!token) {
 		return res.status(400).json({ error: 'Token is required' });
