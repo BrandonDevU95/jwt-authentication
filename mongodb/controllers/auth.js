@@ -128,7 +128,14 @@ async function login(req, res) {
 	}
 }
 
+async function logout(req, res) {
+	res.clearCookie('access_token');
+	res.clearCookie('refresh_token');
+	res.status(200).json({ message: 'Logout successfully' });
+}
+
 module.exports = {
 	signup,
 	login,
+	logout,
 };
