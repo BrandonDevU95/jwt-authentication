@@ -33,11 +33,6 @@ const userSchema = z.object({
 		.min(6, {
 			message: 'Password must be at least 6 characters long',
 		}),
-	role: z.string().optional(),
-	active: z.boolean().default(true),
-	avatar: z.string().url().optional(),
-	created_at: z.date().default(() => new Date()),
-	updated_at: z.date().default(() => new Date()),
 });
 
 //safeParse devuelve un objeto con un error si no se cumple el schema, y
