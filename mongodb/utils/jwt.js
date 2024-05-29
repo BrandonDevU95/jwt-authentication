@@ -2,8 +2,8 @@ const jwt = require('jsonwebtoken');
 
 function generateToken(user) {
 	const expToken = new Date();
-	// Establece el tiempo de expiración del token en 1 hora
-	expToken.setHours(expToken.getHours() + 1);
+	// Establece el tiempo de expiración del token en 5 minutos
+	expToken.setMinutes(expToken.getMinutes() + 5);
 
 	const payload = {
 		token_type: 'access',
