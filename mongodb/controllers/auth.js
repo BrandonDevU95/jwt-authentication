@@ -73,10 +73,10 @@ async function login(req, res) {
 			return res.status(400).json({ error: isValidPassword.message });
 		}
 
-		const token = jwt.generateToken(user);
+		const accessToken = jwt.generateToken(user);
 		const refreshToken = jwt.generateRefreshToken(user);
 
-		res.status(200).json({ token, refreshToken });
+		res.status(200).json({ accessToken, refreshToken });
 	} catch (error) {
 		console.log(error);
 		return res.status(500).json({ error: 'Internal Server Error' });
@@ -100,7 +100,7 @@ async function refreshToken(req, res) {
 
 		const newToken = jwt.generateToken(user);
 
-		return res.status(200).json({ token: newToken });
+		return res.status(200).json({ accessToken: newToken });
 	} catch (error) {
 		return res.status(500).json({ error: 'Internal Server Error' });
 	}
