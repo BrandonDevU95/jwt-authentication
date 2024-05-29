@@ -7,10 +7,10 @@ const encryptPassword = async (password) => {
 		const salt = await bcrypt.genSalt(saltRounds);
 		const hashedPassword = await bcrypt.hash(password, salt);
 		return hashedPassword;
-	} catch (err) {
+	} catch (error) {
 		return {
 			message: 'Password encryption failed',
-			error: err,
+			error,
 		};
 	}
 };
@@ -19,10 +19,10 @@ const verifyPassword = async (password, hashedPassword) => {
 	try {
 		const match = await bcrypt.compare(password, hashedPassword);
 		return match;
-	} catch (err) {
+	} catch (error) {
 		return {
 			message: 'Password verification failed',
-			error: err,
+			error,
 		};
 	}
 };
