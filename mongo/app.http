@@ -3,6 +3,9 @@ POST http://localhost:3000/api/signup
 Content-Type: application/json
 
 {
-    "email": "algo@local.com",
+    "firstname": "Juan",
+    "lastname": "Lopez",
+    "username": "jlopez89",
+    "email": "jlopez89@gmail.com",
     "password": "123456"
 }
