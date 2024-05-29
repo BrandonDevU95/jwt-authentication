@@ -19,13 +19,9 @@ Content-Type: application/json
     "password": "123456"
 }
 
-### Refresh Token
-POST http://localhost:3000/api/refresh-token
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAxNzM3MTg3MCwiZXhwIjoxNzE3MDE3NjcxODcwfQ.sSOqsl_OP0-EnhHFETmoJI5COQmTgxTq-baOEyLWyyY
-
 ### Protected Route with cookie configuration
 GET http://localhost:3000/api/protected
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAxNzM4NTA5OCwiZXhwIjoxNzE3MDE3Njg1MDk4fQ.UAfNjBvtKuCsEXKkfgpBhIK_5bdw9xtKveOl0h9Caag; Max-Age=300; Path=/; Expires=Wed, 29 May 2024 21:21:25 GMT; HttpOnly; SameSite=Strict
+# Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAyNTU2NTM1OSwiZXhwIjoxNzE3MDI1ODY1MzU4fQ.jgzC2RglG3uk7-jRqYvHZh_nkiIjAe-y-_UA8hjSpUc; Max-Age=604800; Path=/; Expires=Wed, 05 Jun 2024 22:12:45 GMT; HttpOnly; SameSite=Strict
 
 
 
