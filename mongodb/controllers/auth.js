@@ -21,8 +21,14 @@ async function signup(req, res) {
 
 	const newUser = new User(user.data);
 	try {
-		await newUser.save();
-		return res.status(201).json({ message: 'User created successfully' });
+		const user = await newUser.save();
+		const accessToken = jwt.generateToken(user);
+		const refreshToken = jwt.generateRefreshToken(user);
+
+		return res.status(201).json({
+			accessToken,
+			refreshToken,
+		});
 	} catch (error) {
 		if (error.code === 11000) {
 			// Código de error de duplicación
