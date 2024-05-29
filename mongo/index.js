@@ -12,7 +12,7 @@ const DB_HOST = process.env.DB_HOST;
 (async () => {
 	try {
 		await mongoose.connect(
-			`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/`
+			`mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/jwt-auth?retryWrites=true&w=majority&appName=jwt`
 		);
 
 		app.listen(PORT, () => {
