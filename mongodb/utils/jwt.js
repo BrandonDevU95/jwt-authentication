@@ -30,11 +30,9 @@ function generateRefreshToken(user) {
 	return jwt.sign(payload, process.env.JWT_SECRET);
 }
 
-function verifyToken(token) {
+function decodedToken(token) {
 	return jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-		// Error al verificar el token (por ejemplo, token inválido o expirado)
 		if (err) return null;
-
 		// El token es válido y `decoded` contiene el payload del token
 		return decoded;
 	});
@@ -43,5 +41,5 @@ function verifyToken(token) {
 module.exports = {
 	generateToken,
 	generateRefreshToken,
-	verifyToken,
+	decodedToken,
 };
