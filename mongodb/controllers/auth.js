@@ -25,6 +25,22 @@ async function signup(req, res) {
 		const accessToken = jwt.generateToken(user);
 		const refreshToken = jwt.generateRefreshToken(user);
 
+		//Guardar los tokens en las cookies para mayor seguridad y que el cliente pueda acceder a ellos
+		// Configurar cookies
+		res.cookie('access_token', accessToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
+			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
+			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
+		});
+
+		res.cookie('refresh_token', refreshToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'Strict',
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 1 semana y se elimina la cookie
+		});
+
 		return res.status(201).json({
 			accessToken,
 			refreshToken,
@@ -81,6 +97,22 @@ async function login(req, res) {
 
 		const accessToken = jwt.generateToken(user);
 		const refreshToken = jwt.generateRefreshToken(user);
+
+		//Guardar los tokens en las cookies para mayor seguridad y que el cliente pueda acceder a ellos
+		// Configurar cookies
+		res.cookie('access_token', accessToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
+			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
+			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
+		});
+
+		res.cookie('refresh_token', refreshToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production',
+			sameSite: 'Strict',
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 1 semana y se elimina la cookie
+		});
 
 		res.status(200).json({ accessToken, refreshToken });
 	} catch (error) {
