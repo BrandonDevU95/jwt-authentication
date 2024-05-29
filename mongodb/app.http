@@ -26,3 +26,10 @@ Content-Type: application/json
 {
     "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTcyYjYxNjViZmRmYjg2OTZiM2MxMCIsImlhdCI6MTcxNzAwNzUwNjE3OSwiZXhwIjoxNzE3MDExMTA2MTc4fQ.QmRT5UXKvB4NqdmlnsCWw60nEwcyiKCnEvtOSLDCE_Q"
 }  
+
+### Protected Route with cookie configuration
+GET http://localhost:3000/api/protected
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTcyYjYxNjViZmRmYjg2OTZiM2MxMCIsImlhdCI6MTcxNzAxMzY3Nzc1NywiZXhwIjoxNzE3MDEzOTc3NzU2fQ.4KtbGNYuBmQN_W_xJTLxo-uhZHcuN1gQIOh5h_6UYY4; Max-Age=300; Path=/; Expires=Wed, 29 May 2024 20:19:37 GMT; HttpOnly; SameSite=Strict,refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsInVzZXJfaWQiOiI2NjU3MmI2MTY1YmZkZmI4Njk2YjNjMTAiLCJpYXQiOjE3MTcwMTM2Nzc3NTksImV4cCI6MTcxNzYxODQ3Nzc1OX0.QK8hq1h6zYeNObDwwjxfl5esTTG0_PPkYwHPg99DnfE; Max-Age=604800; Path=/; Expires=Wed, 05 Jun 2024 20:14:37 GMT; HttpOnly; SameSite=Strict
+
+
+
