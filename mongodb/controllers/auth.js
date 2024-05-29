@@ -138,6 +138,14 @@ async function refreshToken(req, res) {
 
 		const newToken = jwt.generateToken(user);
 
+		// Configurar cookies
+		res.cookie('access_token', accessToken, {
+			httpOnly: true,
+			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
+			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
+			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
+		});
+
 		return res.status(200).json({ accessToken: newToken });
 	} catch (error) {
 		return res.status(500).json({ error: 'Internal Server Error' });
