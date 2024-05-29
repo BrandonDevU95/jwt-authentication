@@ -34,7 +34,7 @@ const userSchema = z.object({
 			message: 'Password must be at least 6 characters long',
 		}),
 	role: z.string().optional(),
-	active: z.boolean().default(false),
+	active: z.boolean().default(true),
 	avatar: z.string().url().optional(),
 	created_at: z.date().default(() => new Date()),
 	updated_at: z.date().default(() => new Date()),
