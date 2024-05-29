@@ -135,7 +135,7 @@ async function refreshToken(req, res) {
 		return res.status(400).json({ error: 'Token is required' });
 	}
 
-	const decoded = jwt.verifyToken(token);
+	const decoded = jwt.decodedToken(token);
 
 	if (!decoded) return res.status(403).json({ error: 'Forbidden' });
 
