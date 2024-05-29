@@ -1,6 +1,6 @@
-const User = require('../model/user');
+const User = require('../models/user');
 const { encryptPassword, verifyPassword } = require('../utils/authPass');
-const { validateUser } = require('../schema/user');
+const { validateUser } = require('../schemas/user');
 const jwt = require('../utils/jwt');
 
 async function signup(req, res) {

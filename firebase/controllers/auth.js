@@ -1,4 +1,4 @@
-const { validateUser } = require('../model/user');
+const { validateUser } = require('../models/user');
 const { encryptPassword } = require('../utils/authPass');
 const crypto = require('node:crypto');
 const db = require('../firebase');
