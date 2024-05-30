@@ -1,8 +1,9 @@
 const jwt = require('../utils/jwt');
+const { ACCESS_TOKEN, REFRESH_TOKEN } = require('../utils/constants');
 
 function userAuth(req, res, next) {
-	const accessToken = req.cookies['access_token'];
-	const refreshToken = req.cookies['refresh_token'];
+	const accessToken = req.cookies[ACCESS_TOKEN];
+	const refreshToken = req.cookies[REFRESH_TOKEN];
 
 	if (!accessToken && !refreshToken) {
 		return res
@@ -33,8 +34,8 @@ function userAuth(req, res, next) {
 				!refreshTokenPayload ||
 				refreshTokenPayload.exp <= currentTime
 			) {
-				res.clearCookie('access_token');
-				res.clearCookie('refresh_token');
+				res.clearCookie(ACCESS_TOKEN);
+				res.clearCookie(REFRESH_TOKEN);
 				return res
 					.status(401)
 					.json({ error: 'Token has expired. Please log in again.' });
@@ -43,7 +44,7 @@ function userAuth(req, res, next) {
 				const newAccessToken = jwt.generateToken({
 					_id: refreshTokenPayload.user_id,
 				});
-				res.cookie('access_token', newAccessToken, {
+				res.cookie(ACCESS_TOKEN, newAccessToken, {
 					httpOnly: true,
 					secure: process.env.NODE_ENV === 'production',
 					sameSite: 'Strict',
@@ -59,8 +60,8 @@ function userAuth(req, res, next) {
 		req.user = accessTokenPayload;
 		next();
 	} catch (error) {
-		res.clearCookie('access_token');
-		res.clearCookie('refresh_token');
+		res.clearCookie(ACCESS_TOKEN);
+		res.clearCookie(REFRESH_TOKEN);
 		return res.status(403).json({ error: 'Forbidden: Invalid token' });
 	}
 }

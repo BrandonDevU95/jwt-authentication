@@ -2,6 +2,7 @@ const User = require('../models/user');
 const { encryptPassword, verifyPassword } = require('../utils/authPass');
 const { validateUser } = require('../schemas/user');
 const jwt = require('../utils/jwt');
+const { ACCESS_TOKEN, REFRESH_TOKEN } = require('../utils/constants');
 
 async function signup(req, res) {
 	const userFields = validateUser(req.body);
@@ -34,14 +35,14 @@ async function signup(req, res) {
 
 		//Guardar los tokens en las cookies para mayor seguridad y que el cliente pueda acceder a ellos
 		// Configurar cookies
-		res.cookie('access_token', accessToken, {
+		res.cookie(ACCESS_TOKEN, accessToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
 			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
 			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
 		});
 
-		res.cookie('refresh_token', refreshToken, {
+		res.cookie(REFRESH_TOKEN, refreshToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'Strict',
@@ -107,14 +108,14 @@ async function login(req, res) {
 
 		//Guardar los tokens en las cookies para mayor seguridad y que el cliente pueda acceder a ellos
 		// Configurar cookies
-		res.cookie('access_token', accessToken, {
+		res.cookie(ACCESS_TOKEN, accessToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production', // 'secure' asegura que la cookie solo se envíe a través de HTTPS
 			sameSite: 'Strict', // 'Strict' asegura que la cookie solo se envíe en solicitudes del mismo sitio
 			maxAge: 5 * 60 * 1000, // 5 minutos y se elimina la cookie
 		});
 
-		res.cookie('refresh_token', refreshToken, {
+		res.cookie(REFRESH_TOKEN, refreshToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === 'production',
 			sameSite: 'Strict',
@@ -129,8 +130,8 @@ async function login(req, res) {
 }
 
 async function logout(req, res) {
-	res.clearCookie('access_token');
-	res.clearCookie('refresh_token');
+	res.clearCookie(ACCESS_TOKEN);
+	res.clearCookie(REFRESH_TOKEN);
 	res.status(200).json({ message: 'Logout successfully' });
 }
 
