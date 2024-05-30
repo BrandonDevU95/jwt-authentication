@@ -43,10 +43,6 @@ function userAuth(req, res, next) {
 				const newAccessToken = jwt.generateToken({
 					_id: refreshTokenPayload.user_id,
 				});
-<<<<<<< HEAD
-=======
-				console.log('Generando nuevo access token');
->>>>>>> 7dc6fbdc36356e7114fd058a21b345bb6aa03d0f
 				res.cookie('access_token', newAccessToken, {
 					httpOnly: true,
 					secure: process.env.NODE_ENV === 'production',
