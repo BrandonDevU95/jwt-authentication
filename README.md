@@ -29,8 +29,8 @@ Este proyecto es una aplicación básica de autenticación desarrollada con Node
 1. **Clona o descarga el repositorio**:
 
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
-   cd tu_repositorio
+   git clone https://github.com/BrandonDevU95/jwt-authentication.git
+   cd jwt-authentication
    ```
 
 2. **Instala las dependencias**:
@@ -44,14 +44,19 @@ Este proyecto es una aplicación básica de autenticación desarrollada con Node
    Crea un archivo `.env` en la raíz del proyecto y añade las siguientes variables:
 
    ```env
+   DB_USER=""
+   DB_PASS=""
+   DB_HOST=""
    PORT=3000
-   JWT_SECRET=tu_secreto_jwt
+   IP_SERVER=""
+   JWT_SECRET=""
+   process.env.NODE_ENV = ''
    ```
 
 4. **Inicia el servidor**:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
    El servidor estará corriendo en `http://localhost:3000`.
@@ -60,16 +65,19 @@ Este proyecto es una aplicación básica de autenticación desarrollada con Node
 
 ## Endpoints
 
-- **POST /register**: Registra un nuevo usuario.
+- **POST /api/signup**: Registra un nuevo usuario.
   
   ```json
   {
-    "username": "ejemplo",
-    "password": "contraseña"
-  }
+    "firstname": "Brandon",
+    "lastname": "Vargas",
+    "username": "bvargas",
+    "email": "bvargas95@gmail.com",
+    "password": "123456"
+   }
   ```
 
-- **POST /login**: Autentica a un usuario y genera un token JWT.
+- **POST /api/login**: Autentica a un usuario y genera un token JWT.
 
   ```json
   {
@@ -80,10 +88,11 @@ Este proyecto es una aplicación básica de autenticación desarrollada con Node
 
 - **GET /protected**: Ruta protegida que solo es accesible con un token JWT válido. 
 
-  Necesitas incluir el token en el encabezado de la solicitud:
+  Necesitas incluir las cookies del access_token y refresh_token solicitud:
 
   ```
-  Authorization: Bearer <tu_token_jwt>
+  Cookie: access_token=<token>;,refresh_token=<token>;
+
   ```
 
 ---
