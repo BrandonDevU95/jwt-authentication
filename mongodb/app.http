@@ -24,7 +24,7 @@ GET http://localhost:3000/api/logout
 
 ### Protected Route with cookie configuration
 GET http://localhost:3000/api/protected
-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAxNzM4NTA5OCwiZXhwIjoxNzE3MDE3Njg1MDk4fQ.UAfNjBvtKuCsEXKkfgpBhIK_5bdw9xtKveOl0h9Caag; Max-Age=300; Path=/; Expires=Wed, 29 May 2024 23:55:38 GMT; HttpOnly; SameSite=Strict,refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsInVzZXJfaWQiOiI2NjU3OWFhNzQxMzUxMWIyNDQ5NDk4YWEiLCJpYXQiOjE3MTcwMjY2Mzg3NDQsImV4cCI6MTcxNzYzMTQzODc0NH0.x1XTJeLhvqNf2dk0SfGmeOhHQObh6zvRZwdS7tbVH68; Max-Age=604800; Path=/; Expires=Wed, 05 Jun 2024 23:50:38 GMT; HttpOnly; SameSite=Strict
+Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwidXNlcl9pZCI6IjY2NTc5YWE3NDEzNTExYjI0NDk0OThhYSIsImlhdCI6MTcxNzAyODA0MTU3NiwiZXhwIjoxNzE3MDI4MzQxNTc2fQ.jlJOhTau4Tlvbhg88jIIL4hsCgppVyqnoggZHAgVbzQ; Max-Age=300; Path=/; Expires=Thu, 30 May 2024 00:19:01 GMT; HttpOnly; SameSite=Strict,refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsInVzZXJfaWQiOiI2NjU3OWFhNzQxMzUxMWIyNDQ5NDk4YWEiLCJpYXQiOjE3MTcwMjgwNDE1NzgsImV4cCI6MTcxNzYzMjg0MTU3OH0.KMHZx8UTbbAr0oaBwz_pNEj4a62ND0JLgSLj44TuI7w; Max-Age=604800; Path=/; Expires=Thu, 06 Jun 2024 00:14:01 GMT; HttpOnly; SameSite=Strict
 
 
 
